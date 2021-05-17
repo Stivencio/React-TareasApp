@@ -9,6 +9,7 @@ const ToDo = ({ data, toDoDelete, toDoCompleted }) => {
 
 					<p className="card-text text-end">{data.description}</p>
 					<div className="d-grid gap-2 d-md-flex justify-content-md-end">
+						{/* To complete task */}
 						<button
 							onClick={() => toDoCompleted(data.id)}
 							className={`btn btn-sm btn-outline-success ml-2 ${
@@ -21,8 +22,10 @@ const ToDo = ({ data, toDoDelete, toDoCompleted }) => {
 					</div>
 					<hr />
 					<div className="d-grid gap-2 d-md-flex justify-content-md-end">
+						{/* To update task */}
 						<button className="btn btn-sm btn-outline-primary">Update</button>
 
+						{/* To delete task */}
 						<button
 							onClick={() => toDoDelete(data.id)}
 							className="btn btn-sm btn-outline-danger"
