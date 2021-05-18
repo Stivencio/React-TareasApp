@@ -1,7 +1,13 @@
 import React from "react";
 import ToDo from "./ToDo";
 
-const ToDoList = ({ data, toDoDelete, toDoCompleted }) => {
+const ToDoList = ({
+	data,
+	toDoDelete,
+	toDoCompleted,
+	setTaskEdit,
+	toDoUpdate,
+}) => {
 	return (
 		<div>
 			<h1 className="text-center">ToDoList</h1>
@@ -11,6 +17,8 @@ const ToDoList = ({ data, toDoDelete, toDoCompleted }) => {
 					data={el}
 					toDoDelete={toDoDelete}
 					toDoCompleted={toDoCompleted}
+					setTaskEdit={setTaskEdit}
+					toDoUpdate={toDoUpdate}
 				/>
 			))}
 		</div>

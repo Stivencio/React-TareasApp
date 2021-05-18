@@ -1,11 +1,16 @@
 import React from "react";
 
-const ToDo = ({ data, toDoDelete, toDoCompleted }) => {
+const ToDo = ({ data, toDoDelete, toDoCompleted, setTaskEdit, toDoUpdate }) => {
 	return (
 		<div>
 			<div className="card mt-2">
 				<div className="card-body">
 					<h3 className="card-title text-end">{data.title}</h3>
+					<button
+						onClick={() => toDoUpdate({ title: "asdas", description: "sadas" })}
+					>
+						ASFLKAHGFLKSD
+					</button>
 
 					<p className="card-text text-end">{data.description}</p>
 					<div className="d-grid gap-2 d-md-flex justify-content-md-end">
@@ -23,7 +28,12 @@ const ToDo = ({ data, toDoDelete, toDoCompleted }) => {
 					<hr />
 					<div className="d-grid gap-2 d-md-flex justify-content-md-end">
 						{/* To update task */}
-						<button className="btn btn-sm btn-outline-primary">Update</button>
+						<button
+							onClick={() => setTaskEdit(data)}
+							className="btn btn-sm btn-outline-primary"
+						>
+							Update
+						</button>
 
 						{/* To delete task */}
 						<button

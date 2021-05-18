@@ -19,6 +19,8 @@ const DBdata = [
 
 const App = () => {
 	const [data, setData] = useState(DBdata);
+	//To update task
+	const [taskEdit, setTaskEdit] = useState(null);
 
 	//To delete task
 	const toDoDelete = (dataId) => {
@@ -45,19 +47,27 @@ const App = () => {
 	};
 
 	//To update task
-	// const toDoUpdate = null;
+	const toDoUpdate = (taskEdit) => {
+		// const changedToDo = data.map((data) => {
+		// 	data.id === taskEdit.id ? taskEdit : data;
+		// });
+		// setTaskEdit(changedToDo);
+		// console.log(taskEdit);
+	};
 
 	return (
 		<div className="container mt-4">
 			<div className="row d-flex justify-content-center">
 				<div className="col-6 mt-5">
-					<ToDoForm toDoAdd={toDoAdd} />
+					<ToDoForm toDoAdd={toDoAdd} taskEdit={taskEdit} />
 				</div>
 				<div className="col-7 ">
 					<ToDoList
 						data={data}
 						toDoDelete={toDoDelete}
 						toDoCompleted={toDoCompleted}
+						toDoUpdate={toDoUpdate}
+						setTaskEdit={setTaskEdit}
 					/>
 				</div>
 			</div>
