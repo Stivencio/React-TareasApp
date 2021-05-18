@@ -37,27 +37,28 @@ const App = () => {
 	//To add new task
 	const toDoAdd = (dataForm) => {
 		const newData = {
+			...dataForm,
 			id: Date.now(),
-			...data,
 			completed: false,
 		};
-
-		const changedToDo = [...data, newData];
-		setData(changedToDo);
+		setData([...data, newData]);
 	};
+
+	//To update task
+	// const toDoUpdate = null;
 
 	return (
 		<div className="container mt-4">
-			<div className="row">
-				<div className="col-8">
+			<div className="row d-flex justify-content-center">
+				<div className="col-6 mt-5">
+					<ToDoForm toDoAdd={toDoAdd} />
+				</div>
+				<div className="col-7 ">
 					<ToDoList
 						data={data}
 						toDoDelete={toDoDelete}
 						toDoCompleted={toDoCompleted}
 					/>
-				</div>
-				<div className="col-4">
-					<ToDoForm toDoAdd={toDoAdd} />
 				</div>
 			</div>
 		</div>
