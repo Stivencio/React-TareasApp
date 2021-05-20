@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
+import { toast } from "react-toastify";
+
 const initialFormValue = {
 	title: "",
 	description: "",
 };
 
-const ToDoForm = ({ toDoAdd, taskEdit }) => {
+const ToDoForm = ({ toDoAdd, taskEdit, toDoUpdate, setTaskEdit }) => {
 	const [formValues, setFormValues] = useState(initialFormValue);
-	const [error, setError] = useState(false);
+	// const [error, setError] = useState(false);
 	const { title, description } = formValues;
 
 	useEffect(() => {
@@ -23,15 +25,34 @@ const ToDoForm = ({ toDoAdd, taskEdit }) => {
 		setFormValues(changedFromValues);
 	};
 
+	function triggerSuccess(message) {
+		toast.info(message);
+	}
+
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
-		//1 key 2 value
-		if (Object.entries(formValues).some((e) => !e[1].length))
-			return setError(true);
-		else setError(false);
+		//Update
+		// console.log(formValidation);
 
-		taskEdit ? console.log("editar") : toDoAdd(formValues);
+		//AAAAAAAAAAAAAAAAAAAAAAA
+		// 1 key 2 value
+		// if (Object.entries(formValidation).some((e) => !e[1].length))
+		// 	return setError(true);
+		// else setError(false);
+
+		if (title.trim() === "" || description.trim() === "") {
+			return triggerSuccess("Debes ingresar un título y descripción");
+		}
+
+		//Update
+		taskEdit ? toDoUpdate(formValues) : toDoAdd(formValues);
+		setFormValues(initialFormValue);
+		setTaskEdit(null);
+
+		// setTimeout(() => {
+		// 	setError(false);
+		// }, 2000);
 	};
 
 	//Validar campos
@@ -43,14 +64,14 @@ const ToDoForm = ({ toDoAdd, taskEdit }) => {
 				<input
 					type="text"
 					placeholder="Title"
-					className="form-control"
+					className="form-control inputStyles"
 					value={title}
 					name="title"
 					onChange={handleInputChange}
 				/>
 				<textarea
 					placeholder="Description"
-					className="form-control mt-2"
+					className="form-control mt-2 inputStyles"
 					value={description}
 					name="description"
 					onChange={handleInputChange}
@@ -61,12 +82,22 @@ const ToDoForm = ({ toDoAdd, taskEdit }) => {
 						{taskEdit ? "Update task" : "Add Task"}
 					</button>
 				</div>
+				<div className="d-flex justify-content-end">
+					{taskEdit && (
+						<button
+							onClick={() => setTaskEdit(null)}
+							className="btn btn-warning btn-block mt-2"
+						>
+							Cancel
+						</button>
+					)}
+				</div>
 
-				{error && (
+				{/* {error && (
 					<div className="alert alert-danger mt-3" role="alert">
 						Debes completar todos los campos
 					</div>
-				)}
+				)} */}
 			</form>
 		</div>
 	);

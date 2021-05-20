@@ -1,0 +1,23 @@
+div {
+	/* background-color: #FDF0D5 */
+}
+body {
+	background-color: #003049;
+}
+h1 {
+	color: #fdf0d5;
+
+	/* color: #669BBC; */
+}
+
+.inputStyles {
+	background-color: #fdf0d5;
+}
+.textStyles {
+	color: #003049;
+}
+
+/** Classes for the displayed toast **/
+/* .Toastify__toast {
+	background-color: #000000;
+} */
