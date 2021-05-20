@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import NavBar from "./components/NavBar";
 import ToDoList from "./components/ToDoList";
 import ToDoForm from "./components/ToDoForm";
-import SoundApp from "./components/SoundApp.jsx";
-import { ToastContainer, toast } from "react-toastify";
+
+import useSound from "use-sound";
+import song from "./sounds/zelda.mp3";
+
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const DBdata = [
@@ -21,7 +24,7 @@ const DBdata = [
 	},
 ];
 
-const App = (onLoading, onPlaying, onFinishedPlaying) => {
+const App = () => {
 	/*
 Login con la cuenta de Google
 LocalStorage / Mongo - Crear Backend
@@ -30,6 +33,8 @@ Calidar campos - backend y frontend
 Agregar fotos, archivos, radiobutton, select, etc.
 Conectarse a la api de coinbase para obtener los precios de las cripto en tiempo real
 */
+
+	const [play, { isPlaying, stop }] = useSound(song, { volume: 0.04 });
 
 	// localStorage.setItem("Data", JSON.stringify(data));
 
@@ -74,13 +79,25 @@ Conectarse a la api de coinbase para obtener los precios de las cripto en tiempo
 	};
 
 	//Reproducir canción
+	useEffect(() => {
+		play();
+	}, [play]);
 
-	const playSong = () => {};
 	return (
 		<>
 			<NavBar />
 			<div className="container mt-4">
-				<SoundApp />
+				<div className="btn-position">
+					<button
+						className={`btn btn-${
+							isPlaying ? `danger` : `success`
+						} btn-circle btn-xl`}
+						onClick={isPlaying ? () => stop() : () => play()}
+					>
+						XD
+					</button>
+				</div>
+				{/* <SoundApp /> */}
 				<ToastContainer
 					className=" progressClassName: 'fancy-progress-bar'"
 					position="top-right"

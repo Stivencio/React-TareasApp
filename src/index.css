@@ -17,7 +17,16 @@ h1 {
 	color: #003049;
 }
 
-/** Classes for the displayed toast **/
-/* .Toastify__toast {
-	background-color: #000000;
-} */
+.btn-circle.btn-xl {
+	width: 70px;
+	height: 70px;
+	padding: 10px 16px;
+	border-radius: 35px;
+	font-size: 30px;
+	text-align: center;
+}
+
+.btn-position {
+	display: flex;
+	justify-content: flex-start;
+}
