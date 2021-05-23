@@ -4,10 +4,13 @@ div {
 body {
 	background-color: #003049;
 }
+
 h1 {
 	color: #fdf0d5;
+}
 
-	/* color: #669BBC; */
+h2 {
+	color: #fdf0d5;
 }
 
 .inputStyles {
@@ -18,15 +21,31 @@ h1 {
 }
 
 .btn-circle.btn-xl {
-	width: 70px;
-	height: 70px;
+	width: 75px;
+	height: 75px;
 	padding: 10px 16px;
 	border-radius: 35px;
 	font-size: 30px;
 	text-align: center;
 }
 
-.btn-position {
+.start-position {
 	display: flex;
 	justify-content: flex-start;
+}
+.center-position {
+	display: flex;
+	justify-content: center;
+}
+.end-position {
+	display: flex;
+	justify-content: flex-end;
+}
+.between-position {
+	display: flex;
+	justify-content: space-between;
+}
+.space-position {
+	display: flex;
+	justify-content: space-around;
 }

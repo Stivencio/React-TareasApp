@@ -1,18 +1,24 @@
 import React, { useState, useEffect } from "react";
-import { toast } from "react-toastify";
 
 const initialFormValue = {
 	title: "",
 	description: "",
 };
 
-const ToDoForm = ({ toDoAdd, taskEdit, toDoUpdate, setTaskEdit }) => {
+const ToDoForm = ({
+	toDoAdd,
+	taskEdit,
+	toDoUpdate,
+	setTaskEdit,
+	toast,
+	Swal,
+}) => {
 	const [formValues, setFormValues] = useState(initialFormValue);
 	// const [error, setError] = useState(false);
 	const { title, description } = formValues;
 
 	useEffect(() => {
-		taskEdit && setFormValues(taskEdit);
+		taskEdit ? setFormValues(taskEdit) : setFormValues(initialFormValue);
 	}, [taskEdit]);
 
 	//evento
@@ -32,34 +38,35 @@ const ToDoForm = ({ toDoAdd, taskEdit, toDoUpdate, setTaskEdit }) => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
-		//Update
-		// console.log(formValidation);
+		//Validations
 
-		//AAAAAAAAAAAAAAAAAAAAAAA
 		// 1 key 2 value
 		// if (Object.entries(formValidation).some((e) => !e[1].length))
 		// 	return setError(true);
 		// else setError(false);
 
-		if (title.trim() === "" || description.trim() === "") {
-			return triggerSuccess("Debes ingresar un título y descripción");
+		//Validations
+		if (title.trim() === "") {
+			return triggerSuccess("Title is required");
+		}
+		if (description.trim() === "") {
+			return triggerSuccess("Description is required");
 		}
 
-		//Update
+		//UpdateTask - AddTask
+
 		taskEdit ? toDoUpdate(formValues) : toDoAdd(formValues);
 		setFormValues(initialFormValue);
 		setTaskEdit(null);
-
-		// setTimeout(() => {
-		// 	setError(false);
-		// }, 2000);
 	};
 
 	//Validar campos
 
 	return (
 		<div className="mb-3">
-			<h1 className="text-center">{taskEdit ? "Update task" : "New Task"}</h1>
+			<h2 className="text-center display-5">
+				{taskEdit ? "Update task" : "New Task"}
+			</h2>
 			<form onSubmit={handleSubmit}>
 				<input
 					type="text"
@@ -78,9 +85,16 @@ const ToDoForm = ({ toDoAdd, taskEdit, toDoUpdate, setTaskEdit }) => {
 				></textarea>
 				<hr />
 				<div className="d-flex justify-content-end">
-					<button className="btn btn-primary btn-block mt-2">
-						{taskEdit ? "Update task" : "Add Task"}
-					</button>
+					{taskEdit ? (
+						<button
+							onClick={() => Swal.fire("Any fool can use a computer")}
+							className="btn btn-primary btn-block mt-2"
+						>
+							Update task
+						</button>
+					) : (
+						<button className="btn btn-primary btn-block mt-2">Add task</button>
+					)}
 				</div>
 				<div className="d-flex justify-content-end">
 					{taskEdit && (

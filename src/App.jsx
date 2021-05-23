@@ -1,53 +1,52 @@
 import React, { useState, useEffect } from "react";
-import NavBar from "./components/NavBar";
+// import NavBar from "./components/NavBar";
 import ToDoList from "./components/ToDoList";
 import ToDoForm from "./components/ToDoForm";
+import Time from "./components/Time";
+import Swal from "sweetalert2";
 
 import useSound from "use-sound";
-import song from "./sounds/zelda.mp3";
-
-import { ToastContainer } from "react-toastify";
+import song from "./sounds/canción.mp3";
+import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const DBdata = [
+const initialData = [
 	{
 		id: "1",
-		title: "Tarea 1",
-		description: "Desc 1",
+		title: "Task 1",
+		description: "Description",
 		completed: false,
 	},
 	{
 		id: "2",
-		title: "Tarea 2",
-		description: "Desc 2",
+		title: "Task 2",
+		description: "Description",
 		completed: true,
 	},
 ];
 
-const App = () => {
-	/*
+/*
 Login con la cuenta de Google
 LocalStorage / Mongo - Crear Backend
 Confirmaciones para update, delete, confirm
-Calidar campos - backend y frontend
+Validar campos - backend y frontend
 Agregar fotos, archivos, radiobutton, select, etc.
 Conectarse a la api de coinbase para obtener los precios de las cripto en tiempo real
 */
 
-	const [play, { isPlaying, stop }] = useSound(song, { volume: 0.04 });
+const localData = JSON.parse(localStorage.getItem("data"));
 
-	// localStorage.setItem("Data", JSON.stringify(data));
-
-	const [data, setData] = useState(DBdata);
-
-	//To update task
+const App = () => {
+	const [data, setData] = useState(localData || initialData);
 	const [taskEdit, setTaskEdit] = useState(null);
+	const [play, { isPlaying, stop }] = useSound(song, { volume: 0.03 });
 
-	//To delete task
-	const toDoDelete = (dataId) => {
-		const changedToDo = data.filter((el) => el.id !== dataId);
-		setData(changedToDo);
-	};
+	//LocalStorage solo puede almacenar strings
+	useEffect(() => {
+		localStorage.setItem("data", JSON.stringify(data));
+	}, [data]);
+
+	//SweetAlert
 
 	//To complete task
 	const toDoCompleted = (dataId) => {
@@ -78,25 +77,35 @@ Conectarse a la api de coinbase para obtener los precios de las cripto en tiempo
 		// console.log(data);
 	};
 
-	//Reproducir canción
+	const toDoDelete = (dataId) => {
+		taskEdit && dataId === taskEdit.id && setTaskEdit(null);
+
+		const changedToDo = data.filter((el) => el.id !== dataId);
+		setData(changedToDo);
+	};
+
+	// Reproducir canción
 	useEffect(() => {
 		play();
 	}, [play]);
-
 	return (
 		<>
-			<NavBar />
+			{/* <NavBar /> */}
 			<div className="container mt-4">
-				<div className="btn-position">
+				<div className="start-position">
 					<button
 						className={`btn btn-${
-							isPlaying ? `danger` : `success`
+							isPlaying ? `danger` : `warning`
 						} btn-circle btn-xl`}
 						onClick={isPlaying ? () => stop() : () => play()}
 					>
-						XD
+						<i
+							className={`bi bi-${isPlaying ? `pause` : `play`}-circle-fill`}
+						></i>
 					</button>
 				</div>
+				<Time />
+
 				{/* <SoundApp /> */}
 				<ToastContainer
 					className=" progressClassName: 'fancy-progress-bar'"
@@ -115,18 +124,21 @@ Conectarse a la api de coinbase para obtener los precios de las cripto en tiempo
 				<div className="row d-flex justify-content-center">
 					<div className="col-6 mt-5">
 						<ToDoForm
+							toast={toast}
+							Swal={Swal}
+							setTaskEdit={setTaskEdit}
 							toDoAdd={toDoAdd}
 							taskEdit={taskEdit}
 							toDoUpdate={toDoUpdate}
-							setTaskEdit={setTaskEdit}
 						/>
 					</div>
 					<div className="col-7 ">
 						<ToDoList
+							Swal={Swal}
 							data={data}
+							setTaskEdit={setTaskEdit}
 							toDoDelete={toDoDelete}
 							toDoCompleted={toDoCompleted}
-							setTaskEdit={setTaskEdit}
 						/>
 					</div>
 				</div>

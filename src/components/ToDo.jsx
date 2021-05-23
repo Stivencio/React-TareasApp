@@ -1,6 +1,6 @@
 import React from "react";
 
-const ToDo = ({ data, toDoDelete, toDoCompleted, setTaskEdit, toDoUpdate }) => {
+const ToDo = ({ data, toDoDelete, toDoCompleted, setTaskEdit, Swal }) => {
 	return (
 		<div>
 			<div className="card mt-2 inputStyles">
