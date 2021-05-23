@@ -2,7 +2,7 @@ import React from "react";
 
 const ToDo = ({ data, toDoDelete, toDoCompleted, setTaskEdit, Swal }) => {
 	return (
-		<div>
+		<>
 			<div className="card mt-2 inputStyles">
 				<div className="card-body">
 					<h3 className="card-title text-end textStyles">{data.title}</h3>
@@ -41,7 +41,7 @@ const ToDo = ({ data, toDoDelete, toDoCompleted, setTaskEdit, Swal }) => {
 					</div>
 				</div>
 			</div>
-		</div>
+		</>
 	);
 };
 

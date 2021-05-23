@@ -121,27 +121,22 @@ const App = () => {
 					limit={1}
 				/>
 
-				<div className="row d-flex justify-content-center">
-					<div className="col-6 mt-5">
-						<ToDoForm
-							toast={toast}
-							Swal={Swal}
-							setTaskEdit={setTaskEdit}
-							toDoAdd={toDoAdd}
-							taskEdit={taskEdit}
-							toDoUpdate={toDoUpdate}
-						/>
-					</div>
-					<div className="col-7 ">
-						<ToDoList
-							Swal={Swal}
-							data={data}
-							setTaskEdit={setTaskEdit}
-							toDoDelete={toDoDelete}
-							toDoCompleted={toDoCompleted}
-						/>
-					</div>
-				</div>
+				<ToDoForm
+					toast={toast}
+					Swal={Swal}
+					setTaskEdit={setTaskEdit}
+					toDoAdd={toDoAdd}
+					taskEdit={taskEdit}
+					toDoUpdate={toDoUpdate}
+				/>
+
+				<ToDoList
+					Swal={Swal}
+					data={data}
+					setTaskEdit={setTaskEdit}
+					toDoDelete={toDoDelete}
+					toDoCompleted={toDoCompleted}
+				/>
 			</div>
 		</>
 	);

@@ -1,23 +1,41 @@
-div {
-	/* background-color: #FDF0D5 */
-}
+/* Background */
 body {
-	background-color: #003049;
+	background-color: #201d36;
 }
-
+/* Time */
 h1 {
-	color: #fdf0d5;
+	color: #6d62b5;
 }
-
+/* Titles */
 h2 {
-	color: #fdf0d5;
+	color: #6d62b5;
 }
 
-.inputStyles {
-	background-color: #fdf0d5;
+/* Placeholder */
+.form-control::placeholder {
+	/* Chrome, Firefox, Opera, Safari 10.1+ */
+	color: #201d36;
+	font-weight: 630;
+	opacity: 1; /* Firefox */
 }
+.form-control:-ms-input-placeholder {
+	/* Internet Explorer 10-11 */
+	color: #201d36;
+}
+.form-control::-ms-input-placeholder {
+	/* Microsoft Edge */
+	color: #201d36;
+}
+
+/* Background Cards */
+.inputStyles {
+	background-color: #a093f5;
+}
+
+/* Text in Cards */
 .textStyles {
-	color: #003049;
+	font-weight: 500;
+	color: #463f75;
 }
 
 .btn-circle.btn-xl {

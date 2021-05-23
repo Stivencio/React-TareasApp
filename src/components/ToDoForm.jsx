@@ -63,56 +63,62 @@ const ToDoForm = ({
 	//Validar campos
 
 	return (
-		<div className="mb-3">
-			<h2 className="text-center display-5">
-				{taskEdit ? "Update task" : "New Task"}
-			</h2>
-			<form onSubmit={handleSubmit}>
-				<input
-					type="text"
-					placeholder="Title"
-					className="form-control inputStyles"
-					value={title}
-					name="title"
-					onChange={handleInputChange}
-				/>
-				<textarea
-					placeholder="Description"
-					className="form-control mt-2 inputStyles"
-					value={description}
-					name="description"
-					onChange={handleInputChange}
-				></textarea>
-				<hr />
-				<div className="d-flex justify-content-end">
-					{taskEdit ? (
-						<button
-							onClick={() => Swal.fire("Any fool can use a computer")}
-							className="btn btn-primary btn-block mt-2"
-						>
-							Update task
-						</button>
-					) : (
-						<button className="btn btn-primary btn-block mt-2">Add task</button>
-					)}
-				</div>
-				<div className="d-flex justify-content-end">
-					{taskEdit && (
-						<button
-							onClick={() => setTaskEdit(null)}
-							className="btn btn-warning btn-block mt-2"
-						>
-							Cancel
-						</button>
-					)}
-				</div>
+		<div className="row d-flex justify-content-center">
+			<div className="col-5 mt-5">
+				<div className="mb-3">
+					<h2 className="text-center display-5">
+						{taskEdit ? "Update task" : "New Task"}
+					</h2>
+					<form onSubmit={handleSubmit}>
+						<input
+							type="text"
+							placeholder="Title"
+							className="form-control inputStyles"
+							value={title}
+							name="title"
+							onChange={handleInputChange}
+						/>
+						<textarea
+							placeholder="Description"
+							className="form-control mt-2 inputStyles"
+							value={description}
+							name="description"
+							onChange={handleInputChange}
+						></textarea>
+						<hr />
+						<div className="d-flex justify-content-end">
+							{taskEdit ? (
+								<button
+									onClick={() => Swal.fire("Any fool can use a computer")}
+									className="btn btn-primary btn-block mt-2"
+								>
+									Update task
+								</button>
+							) : (
+								<button className="btn btn-primary btn-block mt-2">
+									Add task
+								</button>
+							)}
+						</div>
+						<div className="d-flex justify-content-end">
+							{taskEdit && (
+								<button
+									onClick={() => setTaskEdit(null)}
+									className="btn btn-warning btn-block mt-2"
+								>
+									Cancel
+								</button>
+							)}
+						</div>
 
-				{/* {error && (
+						{/* {error && (
 					<div className="alert alert-danger mt-3" role="alert">
 						Debes completar todos los campos
 					</div>
 				)} */}
-			</form>
+					</form>
+				</div>
+			</div>
 		</div>
 	);
 };
