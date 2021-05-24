@@ -2,36 +2,47 @@ import React, { useState, useEffect } from "react";
 // import NavBar from "./components/NavBar";
 import ToDoList from "./components/ToDoList";
 import ToDoForm from "./components/ToDoForm";
+import Sounds from "./components/Sounds";
 import Time from "./components/Time";
-import Swal from "sweetalert2";
 
-import useSound from "use-sound";
-import song from "./sounds/canción.mp3";
+import Swal from "sweetalert2";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const initialData = [
 	{
 		id: "1",
-		title: "Task 1",
+		title: "Charmander",
 		description: "Description",
+		image:
+			"https://areajugones.sport.es/wp-content/uploads/2019/11/Pokemon-Espada-y-Escudo-Charmander.jpg",
 		completed: false,
 	},
 	{
 		id: "2",
-		title: "Task 2",
+		title: "Pikachu",
 		description: "Description",
+		image:
+			"https://areajugones.sport.es/wp-content/uploads/2021/02/pikachu-pokemon.jpg",
 		completed: true,
+	},
+	{
+		id: "3",
+		title: "Squirtle",
+		description: "Description",
+		image:
+			"https://dlprivateserver.com/wp-content/uploads/2020/01/Pokemon-Espada-amp-Escudo-%C2%BFPuedes-obtener-Squirtle-contestado-780x470.jpg",
+		completed: false,
 	},
 ];
 
 /*
-Login con la cuenta de Google
-LocalStorage / Mongo - Crear Backend
-Confirmaciones para update, delete, confirm
-Validar campos - backend y frontend
-Agregar fotos, archivos, radiobutton, select, etc.
-Conectarse a la api de coinbase para obtener los precios de las cripto en tiempo real
+Login con la cuenta de Google | PDTE
+LocalStorage | LISTO/ Mongo - Crear Backend PDTE
+Confirmaciones para update, delete, confirm | EN PROCESO
+Validar campos - backend y frontend | PDTE
+Agregar fotos, archivos, radiobutton, select, etc. | PDTE
+Conectarse a la api de coinbase para obtener los precios de las cripto en tiempo real | PDTE
 */
 
 const localData = JSON.parse(localStorage.getItem("data"));
@@ -39,14 +50,11 @@ const localData = JSON.parse(localStorage.getItem("data"));
 const App = () => {
 	const [data, setData] = useState(localData || initialData);
 	const [taskEdit, setTaskEdit] = useState(null);
-	const [play, { isPlaying, stop }] = useSound(song, { volume: 0.03 });
 
 	//LocalStorage solo puede almacenar strings
 	useEffect(() => {
 		localStorage.setItem("data", JSON.stringify(data));
 	}, [data]);
-
-	//SweetAlert
 
 	//To complete task
 	const toDoCompleted = (dataId) => {
@@ -77,6 +85,7 @@ const App = () => {
 		// console.log(data);
 	};
 
+	//To delete task
 	const toDoDelete = (dataId) => {
 		taskEdit && dataId === taskEdit.id && setTaskEdit(null);
 
@@ -84,29 +93,11 @@ const App = () => {
 		setData(changedToDo);
 	};
 
-	// Reproducir canción
-	useEffect(() => {
-		play();
-	}, [play]);
 	return (
 		<>
-			{/* <NavBar /> */}
 			<div className="container mt-4">
-				<div className="start-position">
-					<button
-						className={`btn btn-${
-							isPlaying ? `danger` : `warning`
-						} btn-circle btn-xl`}
-						onClick={isPlaying ? () => stop() : () => play()}
-					>
-						<i
-							className={`bi bi-${isPlaying ? `pause` : `play`}-circle-fill`}
-						></i>
-					</button>
-				</div>
+				<Sounds />
 				<Time />
-
-				{/* <SoundApp /> */}
 				<ToastContainer
 					className=" progressClassName: 'fancy-progress-bar'"
 					position="top-right"

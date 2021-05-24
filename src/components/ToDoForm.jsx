@@ -85,6 +85,11 @@ const ToDoForm = ({
 							name="description"
 							onChange={handleInputChange}
 						></textarea>
+						<input
+							className="form-control mt-2 inputStyles"
+							type="file"
+							id="formFile"
+						/>
 						<hr />
 						<div className="d-flex justify-content-end">
 							{taskEdit ? (

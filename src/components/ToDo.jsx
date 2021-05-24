@@ -4,6 +4,7 @@ const ToDo = ({ data, toDoDelete, toDoCompleted, setTaskEdit, Swal }) => {
 	return (
 		<>
 			<div className="card mt-2 inputStyles">
+				<img src={data.image} className="card-img-top" alt="pikachu" />
 				<div className="card-body">
 					<h3 className="card-title text-end textStyles">{data.title}</h3>
 

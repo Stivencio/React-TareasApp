@@ -14,9 +14,8 @@ const ToDoList = ({ data, toDoDelete, toDoCompleted, setTaskEdit, Swal }) => {
 					</div>
 				) : (
 					data.map((el, idx) => (
-						<div className="col-4">
+						<div className="col-4" key={el.id}>
 							<ToDo
-								key={idx}
 								data={el}
 								toDoDelete={toDoDelete}
 								toDoCompleted={toDoCompleted}
