@@ -1,19 +1,32 @@
 import React from "react";
 import ToDo from "./ToDo";
 
-const ToDoList = ({ data, toDoDelete, toDoCompleted }) => {
+const ToDoList = ({ data, toDoDelete, toDoCompleted, setTaskEdit, Swal }) => {
 	return (
-		<div>
-			<h1 className="text-center">ToDoList</h1>
-			{data.map((el, idx) => (
-				<ToDo
-					key={idx}
-					data={el}
-					toDoDelete={toDoDelete}
-					toDoCompleted={toDoCompleted}
-				/>
-			))}
-		</div>
+		<>
+			<h2 className="text-center display-5">To do list</h2>
+			<div className="row align-items-center">
+				{!data.length ? (
+					<div className=" d-flex justify-content-center col-12">
+						<div className="alert alert-danger" style={{ textAlign: "center" }}>
+							You don't have any task yet 🙃{" "}
+						</div>
+					</div>
+				) : (
+					data.map((el, idx) => (
+						<div className="col-4" key={el.id}>
+							<ToDo
+								data={el}
+								toDoDelete={toDoDelete}
+								toDoCompleted={toDoCompleted}
+								setTaskEdit={setTaskEdit}
+								Swal={Swal}
+							/>
+						</div>
+					))
+				)}
+			</div>
+		</>
 	);
 };
 

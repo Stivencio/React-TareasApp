@@ -9,4 +9,10 @@
 
 ## Dependencias
 
-- A
+### Toastify
+
+- npm i react-toastify
+
+### React-sound
+
+- npm i react-sound

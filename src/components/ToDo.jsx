@@ -1,18 +1,19 @@
 import React from "react";
 
-const ToDo = ({ data, toDoDelete, toDoCompleted }) => {
+const ToDo = ({ data, toDoDelete, toDoCompleted, setTaskEdit, Swal }) => {
 	return (
-		<div>
-			<div className="card mt-2">
+		<>
+			<div className="card mt-2 inputStyles">
+				<img src={data.image} className="card-img-top" alt="pikachu" />
 				<div className="card-body">
-					<h3 className="card-title text-end">{data.title}</h3>
+					<h3 className="card-title text-end textStyles">{data.title}</h3>
 
-					<p className="card-text text-end">{data.description}</p>
+					<p className="card-text text-end textStyles">{data.description}</p>
 					<div className="d-grid gap-2 d-md-flex justify-content-md-end">
 						{/* To complete task */}
 						<button
 							onClick={() => toDoCompleted(data.id)}
-							className={`btn btn-sm btn-outline-success ml-2 ${
+							className={`btn btn-sm btn-success ml-2 ${
 								data.completed ? "disabled" : ""
 							}
 							`}
@@ -23,19 +24,25 @@ const ToDo = ({ data, toDoDelete, toDoCompleted }) => {
 					<hr />
 					<div className="d-grid gap-2 d-md-flex justify-content-md-end">
 						{/* To update task */}
-						<button className="btn btn-sm btn-outline-primary">Update</button>
+						<button
+							// onClick={() => console.log(data)}
+							onClick={() => setTaskEdit(data)}
+							className="btn btn-sm btn-primary"
+						>
+							Update
+						</button>
 
 						{/* To delete task */}
 						<button
 							onClick={() => toDoDelete(data.id)}
-							className="btn btn-sm btn-outline-danger"
+							className="btn btn-sm btn-danger"
 						>
 							Delete
 						</button>
 					</div>
 				</div>
 			</div>
-		</div>
+		</>
 	);
 };
 
