@@ -16,3 +16,7 @@
 ### React-sound
 
 - npm i react-sound
+
+### Tarea pendiente
+
+- Modificar el css
