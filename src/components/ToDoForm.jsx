@@ -67,7 +67,7 @@ const ToDoForm = ({
 			<div className="col-5 mt-5">
 				<div className="mb-3">
 					<h2 className="text-center display-5">
-						{taskEdit ? "Update task" : "New Task"}
+						{taskEdit ? "Update task" : "Nueva tarea"}
 					</h2>
 					<form onSubmit={handleSubmit}>
 						<input
